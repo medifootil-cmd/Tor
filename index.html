@@ -167,13 +167,13 @@ textarea { resize: none; height: 68px; }
 
   <div class="result-card">
     <div class="result-badge">📤 לשליחה למטופל</div>
-    <div id="sumP" class="result-name"></div>
+    <div style="font-size:0.8rem;font-weight:600;color:var(--text-light);margin-bottom:5px;">כותרת ביומן המטופל (ניתן לעריכה)</div>
+    <input type="text" id="pTitleEdit" style="margin-bottom:10px;" oninput="updatePatient()">
     <div id="detP" class="result-detail"></div>
     <div class="divider"></div>
-    <a id="icP" class="btn-ics" download>⬇️ קובץ יומן למטופל (.ics)</a>
-    <a id="gcP" class="btn-gc" target="_blank">📅 קישור Google Calendar למטופל</a>
-    <div class="divider"></div>
-    <a id="waBtn" class="btn-wa" target="_blank">💬 שלח פרטי תור בוואטסאפ</a>
+    <a id="icP" class="btn-ics" download>&#11015;&#65039; קובץ יומן למטופל (.ics)</a>
+    <a id="gcP" class="btn-gc" target="_blank" style="margin-bottom:9px;">&#128197; קישור Google Calendar למטופל</a>
+    <a id="waBtn" class="btn-wa" target="_blank">&#128172; שלח בוואטסאפ עם קישור ליומן</a>
   </div>
 
   <button class="btn-back" onclick="goBack()">← תור חדש</button>
@@ -259,47 +259,24 @@ function generate(){
   document.getElementById('icM').download = patient+'.ics';
   document.getElementById('gcM').href     = mkGC(mTitle, mDesc, loc, s, e);
 
-  // ── למטופל ──
+  // למטופל
   var pTitle = tr + ' אצל ישראל';
-  var pDesc  = tr+'\n'+timeStr+(notes?'\n'+notes:'')+(locOn?'\n📍 '+LOC:'');
+  var pDesc  = notes || '';
+  var gcLink = mkGC(pTitle, pDesc, loc, s, e);
   var pICS   = buildICS(pTitle, pDesc, loc, s, e);
-  document.getElementById('sumP').textContent = tr + ' אצל ישראל';
-  document.getElementById('detP').innerHTML = tr+'<br>'+dl+'<br>'+timeStr+(locOn?'<br>📍 '+LOC:'');
+  document.getElementById('pTitleEdit').value = pTitle;
+  document.getElementById('detP').innerHTML = dl+'<br>'+timeStr+(locOn?'<br>📍 '+LOC:'');
   document.getElementById('icP').href     = mkBlob(pICS);
-  document.getElementById('icP').download = tr + ' אצל ישראל.ics';
-  document.getElementById('gcP').href     = mkGC(pTitle, pDesc, loc, s, e);
+  document.getElementById('icP').download = 'טיפול — '+patient+'.ics';
+  document.getElementById('gcP').href     = gcLink;
+  window._gcLink = gcLink;
 
-  // ── וואטסאפ ──
-  var waText = '📅 *תזכורת לתור*\n\n'+
-    '*'+tr+'*\n'+
+  var waText = 'שלום,\n\nתזכורת לתור שלך:\n'+
+    '*'+pTitle+'*\n'+
     dl+'\n'+
     'שעה '+h+':'+mi+'\n'+
     (locOn?'📍 '+LOC+'\n':'')+
-    (notes?'\n📋 '+notes+'\n':'')+
-    '\nמחכה לך! — ישראל';
+    (notes?'\n'+notes+'\n':'')+
+    '\n📅 לחץ כאן להוספה ליומן שלך:\n'+gcLink+
+    '\n\nמחכה לך! — ישראל';
   document.getElementById('waBtn').href = 'https://wa.me/?text='+encodeURIComponent(waText);
-
-  document.getElementById('formSection').style.display='none';
-  document.getElementById('resultSection').style.display='block';
-  window.scrollTo(0,0);
-}
-
-function goBack(){
-  document.getElementById('formSection').style.display='block';
-  document.getElementById('resultSection').style.display='none';
-}
-
-async function pickContact(){
-  try{
-    var c=await navigator.contacts.select(['name'],{multiple:false});
-    if(c&&c.length>0&&c[0].name&&c[0].name[0])
-      document.getElementById('patientName').value=c[0].name[0];
-  }catch(e){}
-}
-
-document.getElementById('dt').valueAsDate=new Date();
-if('contacts' in navigator&&'ContactsManager' in window)
-  document.getElementById('contactBtn').style.display='block';
-</script>
-</body>
-</html>
