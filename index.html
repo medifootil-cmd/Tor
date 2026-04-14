@@ -3,170 +3,114 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#2c7a7b">
+<meta name="theme-color" content="#3d2b1f">
 <title>קביעת תור — ישראל</title>
 <style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background: #f0f4f4;
-    color: #222;
-    min-height: 100vh;
-    padding: 20px 16px 40px;
-  }
-  h1 {
-    text-align: center;
-    color: #2c7a7b;
-    font-size: 1.4rem;
-    margin-bottom: 24px;
-    margin-top: 8px;
-  }
-  .card {
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 16px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
-  label {
-    display: block;
-    font-size: 0.85rem;
-    color: #555;
-    margin-bottom: 6px;
-    font-weight: 600;
-  }
-  input, select {
-    width: 100%;
-    padding: 12px 14px;
-    border: 1.5px solid #ddd;
-    border-radius: 10px;
-    font-size: 1rem;
-    margin-bottom: 14px;
-    background: #fafafa;
-    color: #222;
-    appearance: none;
-    -webkit-appearance: none;
-  }
-  input:focus, select:focus {
-    outline: none;
-    border-color: #2c7a7b;
-    background: white;
-  }
-  .row { display: flex; gap: 10px; }
-  .row > div { flex: 1; }
-  .btn-contact {
-    width: 100%;
-    padding: 11px;
-    background: #e8f4f4;
-    color: #2c7a7b;
-    border: 1.5px solid #2c7a7b;
-    border-radius: 10px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    margin-bottom: 14px;
-  }
-  .btn-main {
-    width: 100%;
-    padding: 14px;
-    background: #2c7a7b;
-    color: white;
-    border: none;
-    border-radius: 12px;
-    font-size: 1.05rem;
-    font-weight: 700;
-    cursor: pointer;
-    margin-top: 4px;
-  }
-  .btn-main:active { background: #225f60; }
-  .error { color: #c0392b; font-size: 0.85rem; margin-bottom: 10px; min-height: 18px; }
+:root {
+  --brown: #3d2b1f;
+  --brown-light: #6b4c38;
+  --sand: #c9a97a;
+  --sand-light: #f0e0c4;
+  --cream: #faf5ee;
+  --green: #4a7c59;
+  --wa: #25D366;
+  --text: #2a1f14;
+  --text-light: #7a6050;
+  --border: #e0cdb8;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; padding-bottom: 40px; }
 
-  /* Result */
-  #resultSection { display: none; }
-  .result-card {
-    background: white;
-    border-radius: 16px;
-    padding: 20px;
-    margin-bottom: 14px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  }
-  .result-title {
-    font-size: 0.8rem;
-    color: #888;
-    font-weight: 600;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .result-name {
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: #2c7a7b;
-    margin-bottom: 6px;
-  }
-  .result-detail { font-size: 0.95rem; color: #444; margin-bottom: 4px; }
-  .btn-ics {
-    display: block;
-    width: 100%;
-    padding: 13px;
-    background: #2c7a7b;
-    color: white;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 700;
-    text-align: center;
-    text-decoration: none;
-    margin-bottom: 10px;
-  }
-  .btn-gc {
-    display: block;
-    width: 100%;
-    padding: 13px;
-    background: #4285f4;
-    color: white;
-    border-radius: 12px;
-    font-size: 1rem;
-    font-weight: 700;
-    text-align: center;
-    text-decoration: none;
-    margin-bottom: 0;
-  }
-  .btn-back {
-    width: 100%;
-    padding: 12px;
-    background: #eee;
-    color: #444;
-    border: none;
-    border-radius: 12px;
-    font-size: 0.95rem;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 14px;
-  }
-  .divider { height: 1px; background: #eee; margin: 12px 0; }
+.header { background: var(--brown); color: white; text-align: center; padding: 22px 20px 18px; }
+.header-icon { font-size: 2rem; margin-bottom: 4px; }
+.header h1 { font-size: 1.3rem; font-weight: 700; }
+.header p { font-size: 0.78rem; color: #e8d5b7; margin-top: 3px; }
+
+.hint { background: #fff8ee; border-right: 3px solid var(--sand); padding: 9px 14px; font-size: 0.78rem; color: var(--text-light); }
+
+.card { background: white; border-radius: 16px; padding: 18px; margin: 12px 14px 0; box-shadow: 0 2px 10px rgba(61,43,31,0.08); }
+.section-title { font-size: 0.72rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
+
+label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-light); margin-bottom: 5px; margin-top: 11px; }
+label:first-of-type { margin-top: 0; }
+
+input, select, textarea {
+  width: 100%; padding: 11px 13px; border: 1.5px solid var(--border); border-radius: 10px;
+  font-size: 0.95rem; background: var(--cream); color: var(--text); font-family: inherit;
+  -webkit-appearance: none; appearance: none;
+}
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--brown-light); background: white; }
+textarea { resize: none; height: 68px; }
+
+.row { display: flex; gap: 10px; }
+.row > div { flex: 1; }
+
+.btn-contact { width: 100%; padding: 10px; background: var(--sand-light); color: var(--brown); border: 1.5px solid var(--sand); border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; margin-bottom: 8px; display: none; }
+
+.toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 13px; background: var(--cream); border-radius: 10px; border: 1.5px solid var(--border); margin-top: 11px; }
+.toggle-info .tl { font-size: 0.88rem; font-weight: 600; }
+.toggle-info .ts { font-size: 0.73rem; color: var(--text-light); }
+.toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+.toggle input { opacity: 0; width: 0; height: 0; }
+.slider { position: absolute; inset: 0; background: #ccc; border-radius: 24px; cursor: pointer; transition: .3s; }
+.slider:before { content: ''; position: absolute; width: 18px; height: 18px; right: 3px; top: 3px; background: white; border-radius: 50%; transition: .3s; }
+.toggle input:checked + .slider { background: var(--brown); }
+.toggle input:checked + .slider:before { transform: translateX(-20px); }
+
+.error { color: #c0392b; font-size: 0.82rem; margin-top: 8px; min-height: 18px; }
+
+.btn-main { width: 100%; padding: 15px; background: var(--brown); color: white; border: none; border-radius: 12px; font-size: 1.05rem; font-weight: 700; cursor: pointer; margin: 14px 14px 0; width: calc(100% - 28px); display: block; }
+.btn-main:active { background: #2a1f14; }
+
+/* RESULT */
+#resultSection { display: none; }
+.result-card { background: white; border-radius: 16px; padding: 18px; margin: 12px 14px 0; box-shadow: 0 2px 10px rgba(61,43,31,0.08); }
+.result-badge { font-size: 0.7rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.result-name { font-size: 1.1rem; font-weight: 700; color: var(--brown); margin-bottom: 5px; }
+.result-detail { font-size: 0.88rem; color: var(--text-light); line-height: 1.7; }
+
+.divider { height: 1px; background: var(--border); margin: 12px 0; }
+
+.btn-ics { display: block; width: 100%; padding: 13px; background: var(--green); color: white; border-radius: 11px; font-size: 0.95rem; font-weight: 700; text-align: center; text-decoration: none; margin-bottom: 9px; }
+.btn-gc { display: block; width: 100%; padding: 13px; background: #4285f4; color: white; border-radius: 11px; font-size: 0.95rem; font-weight: 700; text-align: center; text-decoration: none; margin-bottom: 9px; }
+.btn-wa { display: block; width: 100%; padding: 13px; background: var(--wa); color: white; border-radius: 11px; font-size: 0.95rem; font-weight: 700; text-align: center; text-decoration: none; }
+
+.btn-back { width: calc(100% - 28px); display: block; margin: 12px 14px 0; padding: 13px; background: var(--sand-light); color: var(--brown); border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 600; cursor: pointer; text-align: center; }
 </style>
 </head>
 <body>
 
-<h1>📅 קביעת תור</h1>
+<div class="header">
+  <div class="header-icon">🦶</div>
+  <h1>קביעת תור — ישראל</h1>
+  <p>טיפול מקצועי בכף הרגל · ירושלים</p>
+</div>
+
+<div class="hint">💡 לשמירה על מסך הבית: שלושת הנקודות ← "הוסף לדף הבית"</div>
 
 <!-- FORM -->
 <div id="formSection">
+
   <div class="card">
-    <label>שם המטופל</label>
-    <button class="btn-contact" id="contactBtn" style="display:none" onclick="pickContact()">📇 בחר מאנשי קשר</button>
+    <div class="section-title">פרטי מטופל</div>
+    <button class="btn-contact" id="contactBtn" onclick="pickContact()">📇 בחר מאנשי קשר</button>
+    <label>שם המטופל <span style="font-weight:400;color:#aaa">(לשימושך בלבד)</span></label>
     <input type="text" id="patientName" placeholder="שם פרטי ושם משפחה">
+  </div>
+
+  <div class="card">
+    <div class="section-title">פרטי הטיפול</div>
 
     <label>סוג הטיפול</label>
     <select id="treatType">
       <option value="">בחר טיפול...</option>
-      <option>פדיקור רפואי</option>
-      <option>טיפול בפטרת ציפורניים</option>
+      <option>טיפול פדיקור</option>
+      <option>טיפול פדיקור מורכב</option>
+      <option>טיפול בפטרת הציפורן</option>
       <option>טיפול בציפורן חודרנית</option>
-      <option>טיפול בפצע / כיב</option>
       <option>טיפול בעקב סדוק</option>
-      <option>הכנת משחה / קרם</option>
       <option>ייעוץ</option>
+      <option>טיפול בפצע / כיב</option>
     </select>
 
     <div class="row">
@@ -180,7 +124,7 @@
       </div>
     </div>
 
-    <label>משך הטיפול (דקות)</label>
+    <label>משך הטיפול</label>
     <select id="dur">
       <option value="30">30 דקות</option>
       <option value="45">45 דקות</option>
@@ -189,83 +133,98 @@
       <option value="120">שעתיים</option>
     </select>
 
-    <label>כתובת (אופציונלי)</label>
-    <input type="text" id="loc" placeholder="עיר / רחוב">
+    <label>הנחיות למטופל <span style="font-weight:400;color:#aaa">(יופיע ביומן שלו)</span></label>
+    <textarea id="notes" placeholder="למשל: להביא נעליים נוחות, לא לצבוע ציפורניים לפני הטיפול..."></textarea>
 
-    <label>הערות (אופציונלי)</label>
-    <input type="text" id="notes" placeholder="הערות לטיפול">
-
-    <div class="error" id="err"></div>
-
-    <button class="btn-main" onclick="generate()">✅ צור תורים</button>
+    <div class="toggle-row">
+      <div class="toggle-info">
+        <div class="tl">כלול מיקום המרפאה</div>
+        <div class="ts">יפו 216, ירושלים, קומה 9</div>
+      </div>
+      <label class="toggle">
+        <input type="checkbox" id="locToggle" checked>
+        <span class="slider"></span>
+      </label>
+    </div>
   </div>
+
+  <div class="error" id="err" style="padding: 0 14px;"></div>
+  <button class="btn-main" onclick="generate()">✦ צור קבצי תור</button>
+
 </div>
 
 <!-- RESULT -->
 <div id="resultSection">
 
   <div class="result-card">
-    <div class="result-title">📋 התור שלך</div>
-    <div id="sumM"></div>
+    <div class="result-badge">📋 התור שלי</div>
+    <div id="sumM" class="result-name"></div>
+    <div id="detM" class="result-detail"></div>
     <div class="divider"></div>
     <a id="icM" class="btn-ics" download>⬇️ הוסף ליומן שלי (.ics)</a>
     <a id="gcM" class="btn-gc" target="_blank">📅 פתח ב-Google Calendar</a>
   </div>
 
   <div class="result-card">
-    <div class="result-title">📤 לשליחה למטופל</div>
-    <div id="sumP"></div>
+    <div class="result-badge">📤 לשליחה למטופל</div>
+    <div id="sumP" class="result-name"></div>
+    <div id="detP" class="result-detail"></div>
     <div class="divider"></div>
-    <a id="icP" class="btn-ics" download>⬇️ קובץ למטופל (.ics)</a>
+    <a id="icP" class="btn-ics" download>⬇️ קובץ יומן למטופל (.ics)</a>
     <a id="gcP" class="btn-gc" target="_blank">📅 קישור Google Calendar למטופל</a>
+    <div class="divider"></div>
+    <a id="waBtn" class="btn-wa" target="_blank">💬 שלח פרטי תור בוואטסאפ</a>
   </div>
 
   <button class="btn-back" onclick="goBack()">← תור חדש</button>
 </div>
 
 <script>
+const LOC = 'שערי העיר, יפו 216, ירושלים, קומה 9';
+
 function pad(n){ return String(n).padStart(2,'0'); }
 
 function fmtICS(d){
-  return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+
-         pad(d.getHours())+pad(d.getMinutes())+'00';
+  return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00';
 }
 
-function hdate(ds){
-  var p=ds.split('-');
+function heDay(ds){
   var days=['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
-  var d=new Date(+p[0],+p[1]-1,+p[2]);
-  return 'יום '+days[d.getDay()]+', '+p[2]+'/'+p[1]+'/'+p[0];
+  var p=ds.split('-');
+  return 'יום '+days[new Date(+p[0],+p[1]-1,+p[2]).getDay()]+', '+p[2]+'/'+p[1]+'/'+p[0];
 }
 
-function buildICS(title, desc, start, end){
-  return [
-    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TorApp//HE',
+function buildICS(title, desc, loc, start, end){
+  var lines=[
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Israel Foot Care//HE',
+    'CALSCALE:GREGORIAN','METHOD:PUBLISH',
     'BEGIN:VEVENT',
     'DTSTART:'+fmtICS(start),
     'DTEND:'+fmtICS(end),
     'SUMMARY:'+title,
-    'DESCRIPTION:'+desc.replace(/\n/g,'\\n'),
-    'BEGIN:VALARM','TRIGGER:-PT60M','ACTION:DISPLAY',
-    'DESCRIPTION:תזכורת לתור','END:VALARM',
+    'DESCRIPTION:'+desc.replace(/\n/g,'\\n')
+  ];
+  if(loc) lines.push('LOCATION:'+loc);
+  lines.push(
+    'BEGIN:VALARM','TRIGGER:-PT1440M','ACTION:DISPLAY','DESCRIPTION:תזכורת — תור מחר','END:VALARM',
+    'BEGIN:VALARM','TRIGGER:-PT60M','ACTION:DISPLAY','DESCRIPTION:תזכורת — תור בעוד שעה','END:VALARM',
     'END:VEVENT','END:VCALENDAR'
-  ].join('\r\n');
+  );
+  return lines.join('\r\n');
 }
 
 function mkBlob(txt){
-  var b=new Blob([txt],{type:'text/calendar;charset=utf-8'});
-  return URL.createObjectURL(b);
+  return URL.createObjectURL(new Blob([txt],{type:'text/calendar;charset=utf-8'}));
 }
 
-function mkGC(title, desc, start, end){
-  function gcFmt(d){
-    return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+
-           pad(d.getHours())+pad(d.getMinutes())+'00';
-  }
-  return 'https://calendar.google.com/calendar/render?action=TEMPLATE'+
+function mkGC(title, desc, loc, start, end){
+  var fmt=function(d){ return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00'; };
+  var url='https://calendar.google.com/calendar/render?action=TEMPLATE'+
     '&text='+encodeURIComponent(title)+
-    '&dates='+gcFmt(start)+'/'+gcFmt(end)+
+    '&dates='+fmt(start)+'/'+fmt(end)+
     '&details='+encodeURIComponent(desc);
+  if(loc) url+='&location='+encodeURIComponent(loc);
+  return url;
 }
 
 function generate(){
@@ -274,9 +233,9 @@ function generate(){
   var ds      = document.getElementById('dt').value;
   var ts      = document.getElementById('tm').value;
   var dur     = +document.getElementById('dur').value;
-  var loc     = document.getElementById('loc').value.trim();
   var notes   = document.getElementById('notes').value.trim();
-  var locOn   = loc.length > 0;
+  var locOn   = document.getElementById('locToggle').checked;
+  var loc     = locOn ? LOC : '';
 
   if(!patient){ document.getElementById('err').textContent='נא להכניס שם מטופל'; return; }
   if(!tr)     { document.getElementById('err').textContent='נא לבחור סוג טיפול'; return; }
@@ -286,30 +245,39 @@ function generate(){
   var p=ds.split('-').map(Number), tp=ts.split(':').map(Number);
   var s=new Date(p[0],p[1]-1,p[2],tp[0],tp[1]);
   var e=new Date(s.getTime()+dur*60000);
-  var dl=hdate(ds);
+  var dl=heDay(ds);
   var h=pad(tp[0]), mi=pad(tp[1]);
-  var base='<br>'+dl+'<br>שעה '+h+':'+mi+' · '+dur+' דק\'';
-  if(locOn) base+='<br>📍 '+loc;
-  if(notes) base+='<br>📋 '+notes;
+  var timeStr='שעה '+h+':'+mi+' · '+dur+' דקות';
 
-  // התור שלי
+  // ── התור שלי ──
   var mTitle = patient;
   var mDesc  = tr + (notes?'\n'+notes:'');
-  var mICS   = buildICS(mTitle, mDesc, s, e);
+  var mICS   = buildICS(mTitle, mDesc, loc, s, e);
+  document.getElementById('sumM').textContent = patient;
+  document.getElementById('detM').innerHTML = tr+'<br>'+dl+'<br>'+timeStr+(locOn?'<br>📍 '+LOC:'');
   document.getElementById('icM').href     = mkBlob(mICS);
   document.getElementById('icM').download = patient+'.ics';
-  document.getElementById('gcM').href     = mkGC(mTitle, mDesc, s, e);
-  document.getElementById('sumM').innerHTML = '<div class="result-name">'+patient+'</div>'+
-    '<div class="result-detail">'+tr+'</div>'+base;
+  document.getElementById('gcM').href     = mkGC(mTitle, mDesc, loc, s, e);
 
-  // למטופל
-  var pTitle = tr+' אצל ישראל';
-  var pDesc  = notes||'';
-  var pICS   = buildICS(pTitle, pDesc, s, e);
+  // ── למטופל ──
+  var pTitle = tr + ' אצל ישראל';
+  var pDesc  = tr+'\n'+timeStr+(notes?'\n'+notes:'')+(locOn?'\n📍 '+LOC:'');
+  var pICS   = buildICS(pTitle, pDesc, loc, s, e);
+  document.getElementById('sumP').textContent = tr + ' אצל ישראל';
+  document.getElementById('detP').innerHTML = tr+'<br>'+dl+'<br>'+timeStr+(locOn?'<br>📍 '+LOC:'');
   document.getElementById('icP').href     = mkBlob(pICS);
-  document.getElementById('icP').download = 'טיפול — ישראל.ics';
-  document.getElementById('gcP').href     = mkGC(pTitle, pDesc, s, e);
-  document.getElementById('sumP').innerHTML = '<div class="result-name">'+pTitle+'</div>'+base;
+  document.getElementById('icP').download = tr + ' אצל ישראל.ics';
+  document.getElementById('gcP').href     = mkGC(pTitle, pDesc, loc, s, e);
+
+  // ── וואטסאפ ──
+  var waText = '📅 *תזכורת לתור*\n\n'+
+    '*'+tr+'*\n'+
+    dl+'\n'+
+    'שעה '+h+':'+mi+'\n'+
+    (locOn?'📍 '+LOC+'\n':'')+
+    (notes?'\n📋 '+notes+'\n':'')+
+    '\nמחכה לך! — ישראל';
+  document.getElementById('waBtn').href = 'https://wa.me/?text='+encodeURIComponent(waText);
 
   document.getElementById('formSection').style.display='none';
   document.getElementById('resultSection').style.display='block';
