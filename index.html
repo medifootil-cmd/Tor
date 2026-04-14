@@ -8,14 +8,15 @@
 <style>
 :root {
   --brown: #3d2b1f;
-  --brown-light: #6b4c38;
+  --brown2: #6b4c38;
   --sand: #c9a97a;
-  --sand-light: #f0e0c4;
+  --sand2: #f0e0c4;
   --cream: #faf5ee;
   --green: #4a7c59;
   --wa: #25D366;
+  --gc: #4285f4;
   --text: #2a1f14;
-  --text-light: #7a6050;
+  --soft: #7a6050;
   --border: #e0cdb8;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -26,56 +27,62 @@ body { font-family: 'Segoe UI', Arial, sans-serif; background: var(--cream); col
 .header h1 { font-size: 1.3rem; font-weight: 700; }
 .header p { font-size: 0.78rem; color: #e8d5b7; margin-top: 3px; }
 
-.hint { background: #fff8ee; border-right: 3px solid var(--sand); padding: 9px 14px; font-size: 0.78rem; color: var(--text-light); }
+.hint { background: #fff8ee; border-right: 3px solid var(--sand); padding: 9px 14px; font-size: 0.78rem; color: var(--soft); }
 
 .card { background: white; border-radius: 16px; padding: 18px; margin: 12px 14px 0; box-shadow: 0 2px 10px rgba(61,43,31,0.08); }
-.section-title { font-size: 0.72rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
+.stitle { font-size: 0.72rem; font-weight: 700; color: var(--soft); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
 
-label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--text-light); margin-bottom: 5px; margin-top: 11px; }
-label:first-of-type { margin-top: 0; }
+label { display: block; font-size: 0.8rem; font-weight: 600; color: var(--soft); margin-bottom: 5px; margin-top: 12px; }
+label.first { margin-top: 0; }
 
 input, select, textarea {
   width: 100%; padding: 11px 13px; border: 1.5px solid var(--border); border-radius: 10px;
   font-size: 0.95rem; background: var(--cream); color: var(--text); font-family: inherit;
   -webkit-appearance: none; appearance: none;
 }
-input:focus, select:focus, textarea:focus { outline: none; border-color: var(--brown-light); background: white; }
+input:focus, select:focus, textarea:focus { outline: none; border-color: var(--brown2); background: white; }
 textarea { resize: none; height: 68px; }
 
-.row { display: flex; gap: 10px; }
-.row > div { flex: 1; }
+.row2 { display: flex; gap: 10px; }
+.row2 > div { flex: 1; }
 
-.btn-contact { width: 100%; padding: 10px; background: var(--sand-light); color: var(--brown); border: 1.5px solid var(--sand); border-radius: 10px; font-size: 0.88rem; font-weight: 600; cursor: pointer; margin-bottom: 8px; display: none; }
+.contact-row { display: flex; gap: 8px; align-items: flex-start; }
+.contact-row input { flex: 1; }
+.btn-contact {
+  padding: 11px 13px; background: var(--sand2); color: var(--brown);
+  border: 1.5px solid var(--sand); border-radius: 10px; font-size: 1.1rem;
+  cursor: pointer; flex-shrink: 0; display: none;
+}
 
-.toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 13px; background: var(--cream); border-radius: 10px; border: 1.5px solid var(--border); margin-top: 11px; }
-.toggle-info .tl { font-size: 0.88rem; font-weight: 600; }
-.toggle-info .ts { font-size: 0.73rem; color: var(--text-light); }
-.toggle { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
-.toggle input { opacity: 0; width: 0; height: 0; }
-.slider { position: absolute; inset: 0; background: #ccc; border-radius: 24px; cursor: pointer; transition: .3s; }
-.slider:before { content: ''; position: absolute; width: 18px; height: 18px; right: 3px; top: 3px; background: white; border-radius: 50%; transition: .3s; }
-.toggle input:checked + .slider { background: var(--brown); }
-.toggle input:checked + .slider:before { transform: translateX(-20px); }
+.toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 11px 13px; background: var(--cream); border-radius: 10px; border: 1.5px solid var(--border); margin-top: 12px; }
+.tl { font-size: 0.88rem; font-weight: 600; }
+.ts { font-size: 0.73rem; color: var(--soft); }
+.tog { position: relative; width: 44px; height: 24px; flex-shrink: 0; }
+.tog input { opacity: 0; width: 0; height: 0; }
+.sl { position: absolute; inset: 0; background: #ccc; border-radius: 24px; cursor: pointer; transition: .3s; }
+.sl:before { content: ''; position: absolute; width: 18px; height: 18px; right: 3px; top: 3px; background: white; border-radius: 50%; transition: .3s; }
+.tog input:checked + .sl { background: var(--brown); }
+.tog input:checked + .sl:before { transform: translateX(-20px); }
 
-.error { color: #c0392b; font-size: 0.82rem; margin-top: 8px; min-height: 18px; }
+.err { color: #c0392b; font-size: 0.82rem; margin: 8px 14px 0; min-height: 18px; }
 
-.btn-main { width: 100%; padding: 15px; background: var(--brown); color: white; border: none; border-radius: 12px; font-size: 1.05rem; font-weight: 700; cursor: pointer; margin: 14px 14px 0; width: calc(100% - 28px); display: block; }
+.btn-main { display: block; width: calc(100% - 28px); margin: 14px 14px 0; padding: 15px; background: var(--brown); color: white; border: none; border-radius: 12px; font-size: 1.05rem; font-weight: 700; cursor: pointer; }
 .btn-main:active { background: #2a1f14; }
 
 /* RESULT */
-#resultSection { display: none; }
-.result-card { background: white; border-radius: 16px; padding: 18px; margin: 12px 14px 0; box-shadow: 0 2px 10px rgba(61,43,31,0.08); }
-.result-badge { font-size: 0.7rem; font-weight: 700; color: var(--text-light); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-.result-name { font-size: 1.1rem; font-weight: 700; color: var(--brown); margin-bottom: 5px; }
-.result-detail { font-size: 0.88rem; color: var(--text-light); line-height: 1.7; }
-
-.divider { height: 1px; background: var(--border); margin: 12px 0; }
+#res { display: none; }
+.rcard { background: white; border-radius: 16px; padding: 18px; margin: 12px 14px 0; box-shadow: 0 2px 10px rgba(61,43,31,0.08); }
+.rbadge { font-size: 0.7rem; font-weight: 700; color: var(--soft); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+.rname { font-size: 1.1rem; font-weight: 700; color: var(--brown); margin-bottom: 5px; }
+.rdet { font-size: 0.88rem; color: var(--soft); line-height: 1.7; }
+.div { height: 1px; background: var(--border); margin: 12px 0; }
 
 .btn-ics { display: block; width: 100%; padding: 13px; background: var(--green); color: white; border-radius: 11px; font-size: 0.95rem; font-weight: 700; text-align: center; text-decoration: none; margin-bottom: 9px; }
-.btn-gc { display: block; width: 100%; padding: 13px; background: #4285f4; color: white; border-radius: 11px; font-size: 0.95rem; font-weight: 700; text-align: center; text-decoration: none; margin-bottom: 9px; }
-.btn-wa { display: block; width: 100%; padding: 13px; background: var(--wa); color: white; border-radius: 11px; font-size: 0.95rem; font-weight: 700; text-align: center; text-decoration: none; }
+.btn-gc  { display: block; width: 100%; padding: 13px; background: var(--gc); color: white; border-radius: 11px; font-size: 0.95rem; font-weight: 700; text-align: center; text-decoration: none; margin-bottom: 9px; }
+.btn-wa  { display: block; width: 100%; padding: 13px; background: var(--wa); color: white; border-radius: 11px; font-size: 0.95rem; font-weight: 700; text-align: center; text-decoration: none; }
 
-.btn-back { width: calc(100% - 28px); display: block; margin: 12px 14px 0; padding: 13px; background: var(--sand-light); color: var(--brown); border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 600; cursor: pointer; text-align: center; }
+.elabel { font-size: 0.8rem; font-weight: 600; color: var(--soft); margin-bottom: 5px; display: block; }
+.btn-back { display: block; width: calc(100% - 28px); margin: 12px 14px 0; padding: 13px; background: var(--sand2); color: var(--brown); border: none; border-radius: 12px; font-size: 0.95rem; font-weight: 600; cursor: pointer; text-align: center; }
 </style>
 </head>
 <body>
@@ -89,19 +96,21 @@ textarea { resize: none; height: 68px; }
 <div class="hint">💡 לשמירה על מסך הבית: שלושת הנקודות ← "הוסף לדף הבית"</div>
 
 <!-- FORM -->
-<div id="formSection">
+<div id="form">
 
   <div class="card">
-    <div class="section-title">פרטי מטופל</div>
-    <button class="btn-contact" id="contactBtn" onclick="pickContact()">📇 בחר מאנשי קשר</button>
-    <label>שם המטופל <span style="font-weight:400;color:#aaa">(לשימושך בלבד)</span></label>
-    <input type="text" id="patientName" placeholder="שם פרטי ושם משפחה">
+    <div class="stitle">פרטי מטופל</div>
+    <label class="first">שם המטופל <span style="font-weight:400;color:#bbb">(לשימושך בלבד)</span></label>
+    <div class="contact-row">
+      <input type="text" id="patientName" placeholder="שם פרטי ושם משפחה">
+      <button class="btn-contact" id="contactBtn" onclick="pickContact()" title="בחר מאנשי קשר" style="display:block;">📇</button>
+    </div>
   </div>
 
   <div class="card">
-    <div class="section-title">פרטי הטיפול</div>
+    <div class="stitle">פרטי הטיפול</div>
 
-    <label>סוג הטיפול</label>
+    <label class="first">סוג הטיפול</label>
     <select id="treatType">
       <option value="">בחר טיפול...</option>
       <option>טיפול פדיקור</option>
@@ -113,7 +122,7 @@ textarea { resize: none; height: 68px; }
       <option>טיפול בפצע / כיב</option>
     </select>
 
-    <div class="row">
+    <div class="row2">
       <div>
         <label>תאריך</label>
         <input type="date" id="dt">
@@ -133,54 +142,55 @@ textarea { resize: none; height: 68px; }
       <option value="120">שעתיים</option>
     </select>
 
-    <label>הנחיות למטופל <span style="font-weight:400;color:#aaa">(יופיע ביומן שלו)</span></label>
+    <label>הנחיות למטופל <span style="font-weight:400;color:#bbb">(יופיע ביומן שלו)</span></label>
     <textarea id="notes" placeholder="למשל: להביא נעליים נוחות, לא לצבוע ציפורניים לפני הטיפול..."></textarea>
 
     <div class="toggle-row">
-      <div class="toggle-info">
+      <div>
         <div class="tl">כלול מיקום המרפאה</div>
-        <div class="ts">יפו 216, ירושלים, קומה 9</div>
+        <div class="ts">שערי העיר, יפו 216, ירושלים, קומה 9</div>
       </div>
-      <label class="toggle">
+      <label class="tog">
         <input type="checkbox" id="locToggle" checked>
-        <span class="slider"></span>
+        <span class="sl"></span>
       </label>
     </div>
   </div>
 
-  <div class="error" id="err" style="padding: 0 14px;"></div>
+  <div class="err" id="err"></div>
   <button class="btn-main" onclick="generate()">✦ צור קבצי תור</button>
 
 </div>
 
 <!-- RESULT -->
-<div id="resultSection">
+<div id="res">
 
-  <div class="result-card">
-    <div class="result-badge">📋 התור שלי</div>
-    <div id="sumM" class="result-name"></div>
-    <div id="detM" class="result-detail"></div>
-    <div class="divider"></div>
+  <div class="rcard">
+    <div class="rbadge">📋 התור שלי</div>
+    <div id="rMname" class="rname"></div>
+    <div id="rMdet" class="rdet"></div>
+    <div class="div"></div>
     <a id="icM" class="btn-ics" download>⬇️ הוסף ליומן שלי (.ics)</a>
     <a id="gcM" class="btn-gc" target="_blank">📅 פתח ב-Google Calendar</a>
   </div>
 
-  <div class="result-card">
-    <div class="result-badge">📤 לשליחה למטופל</div>
-    <div style="font-size:0.8rem;font-weight:600;color:var(--text-light);margin-bottom:5px;">כותרת ביומן המטופל (ניתן לעריכה)</div>
-    <input type="text" id="pTitleEdit" style="margin-bottom:10px;" oninput="updatePatient()">
-    <div id="detP" class="result-detail"></div>
-    <div class="divider"></div>
-    <a id="icP" class="btn-ics" download>&#11015;&#65039; קובץ יומן למטופל (.ics)</a>
-    <a id="gcP" class="btn-gc" target="_blank" style="margin-bottom:9px;">&#128197; קישור Google Calendar למטופל</a>
-    <a id="waBtn" class="btn-wa" target="_blank">&#128172; שלח בוואטסאפ עם קישור ליומן</a>
+  <div class="rcard">
+    <div class="rbadge">📤 לשליחה למטופל</div>
+    <span class="elabel">כותרת ביומן המטופל (ניתן לעריכה)</span>
+    <input type="text" id="pTitle" style="margin-bottom:10px;" oninput="refreshPatient()">
+    <div id="rPdet" class="rdet"></div>
+    <div class="div"></div>
+    <a id="icP" class="btn-ics" download>⬇️ קובץ יומן למטופל (.ics)</a>
+    <a id="gcP" class="btn-gc" target="_blank" style="margin-bottom:9px;">📅 קישור ליומן (שלח למטופל)</a>
+    <a id="waBtn" class="btn-wa" target="_blank">💬 שלח בוואטסאפ עם קישור ליומן</a>
   </div>
 
   <button class="btn-back" onclick="goBack()">← תור חדש</button>
 </div>
 
 <script>
-const LOC = 'שערי העיר, יפו 216, ירושלים, קומה 9';
+var LOC = 'שערי העיר, יפו 216, ירושלים, קומה 9';
+var _s, _e, _loc, _dl, _h, _mi, _notes, _patient, _tr;
 
 function pad(n){ return String(n).padStart(2,'0'); }
 
@@ -194,37 +204,37 @@ function heDay(ds){
   return 'יום '+days[new Date(+p[0],+p[1]-1,+p[2]).getDay()]+', '+p[2]+'/'+p[1]+'/'+p[0];
 }
 
-function buildICS(title, desc, loc, start, end){
-  var lines=[
+function buildICS(title, desc, loc, s, e){
+  var L=[
     'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Israel Foot Care//HE',
     'CALSCALE:GREGORIAN','METHOD:PUBLISH',
     'BEGIN:VEVENT',
-    'DTSTART:'+fmtICS(start),
-    'DTEND:'+fmtICS(end),
+    'DTSTART:'+fmtICS(s),
+    'DTEND:'+fmtICS(e),
     'SUMMARY:'+title,
     'DESCRIPTION:'+desc.replace(/\n/g,'\\n')
   ];
-  if(loc) lines.push('LOCATION:'+loc);
-  lines.push(
+  if(loc) L.push('LOCATION:'+loc);
+  L.push(
     'BEGIN:VALARM','TRIGGER:-PT1440M','ACTION:DISPLAY','DESCRIPTION:תזכורת — תור מחר','END:VALARM',
     'BEGIN:VALARM','TRIGGER:-PT60M','ACTION:DISPLAY','DESCRIPTION:תזכורת — תור בעוד שעה','END:VALARM',
     'END:VEVENT','END:VCALENDAR'
   );
-  return lines.join('\r\n');
+  return L.join('\r\n');
 }
 
 function mkBlob(txt){
   return URL.createObjectURL(new Blob([txt],{type:'text/calendar;charset=utf-8'}));
 }
 
-function mkGC(title, desc, loc, start, end){
+function mkGC(title, desc, loc, s, e){
   var fmt=function(d){ return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+pad(d.getHours())+pad(d.getMinutes())+'00'; };
-  var url='https://calendar.google.com/calendar/render?action=TEMPLATE'+
+  var u='https://calendar.google.com/calendar/render?action=TEMPLATE'+
     '&text='+encodeURIComponent(title)+
-    '&dates='+fmt(start)+'/'+fmt(end)+
+    '&dates='+fmt(s)+'/'+fmt(e)+
     '&details='+encodeURIComponent(desc);
-  if(loc) url+='&location='+encodeURIComponent(loc);
-  return url;
+  if(loc) u+='&location='+encodeURIComponent(loc);
+  return u;
 }
 
 function generate(){
@@ -243,40 +253,70 @@ function generate(){
   document.getElementById('err').textContent='';
 
   var p=ds.split('-').map(Number), tp=ts.split(':').map(Number);
-  var s=new Date(p[0],p[1]-1,p[2],tp[0],tp[1]);
-  var e=new Date(s.getTime()+dur*60000);
-  var dl=heDay(ds);
-  var h=pad(tp[0]), mi=pad(tp[1]);
-  var timeStr='שעה '+h+':'+mi+' · '+dur+' דקות';
+  _s=new Date(p[0],p[1]-1,p[2],tp[0],tp[1]);
+  _e=new Date(_s.getTime()+dur*60000);
+  _dl=heDay(ds);
+  _h=pad(tp[0]); _mi=pad(tp[1]);
+  _loc=loc; _notes=notes; _patient=patient; _tr=tr;
 
-  // ── התור שלי ──
-  var mTitle = patient;
-  var mDesc  = tr + (notes?'\n'+notes:'');
-  var mICS   = buildICS(mTitle, mDesc, loc, s, e);
-  document.getElementById('sumM').textContent = patient;
-  document.getElementById('detM').innerHTML = tr+'<br>'+dl+'<br>'+timeStr+(locOn?'<br>📍 '+LOC:'');
+  var timeStr='שעה '+_h+':'+_mi+' · '+dur+' דקות';
+
+  // התור שלי
+  var mDesc = _notes || '';
+  var mICS  = buildICS(patient, mDesc, loc, _s, _e);
+  document.getElementById('rMname').textContent = patient;
+  document.getElementById('rMdet').innerHTML = tr+'<br>'+_dl+'<br>'+timeStr+(locOn?'<br>📍 '+LOC:'');
   document.getElementById('icM').href     = mkBlob(mICS);
   document.getElementById('icM').download = patient+'.ics';
-  document.getElementById('gcM').href     = mkGC(mTitle, mDesc, loc, s, e);
+  document.getElementById('gcM').href     = mkGC(patient, mDesc, loc, _s, _e);
 
   // למטופל
-  var pTitle = tr + ' אצל ישראל';
-  var pDesc  = notes || '';
-  var gcLink = mkGC(pTitle, pDesc, loc, s, e);
-  var pICS   = buildICS(pTitle, pDesc, loc, s, e);
-  document.getElementById('pTitleEdit').value = pTitle;
-  document.getElementById('detP').innerHTML = dl+'<br>'+timeStr+(locOn?'<br>📍 '+LOC:'');
+  document.getElementById('pTitle').value = tr+' אצל ישראל';
+  document.getElementById('rPdet').innerHTML = _dl+'<br>'+timeStr+(locOn?'<br>📍 '+LOC:'');
+  refreshPatient();
+
+  document.getElementById('form').style.display='none';
+  document.getElementById('res').style.display='block';
+  window.scrollTo(0,0);
+}
+
+function refreshPatient(){
+  var pTitle = document.getElementById('pTitle').value;
+  var pDesc  = _notes || '';
+  var gcLink = mkGC(pTitle, pDesc, _loc, _s, _e);
+  var pICS   = buildICS(pTitle, pDesc, _loc, _s, _e);
+
   document.getElementById('icP').href     = mkBlob(pICS);
-  document.getElementById('icP').download = 'טיפול — '+patient+'.ics';
+  document.getElementById('icP').download = 'טיפול — '+_patient+'.ics';
   document.getElementById('gcP').href     = gcLink;
-  window._gcLink = gcLink;
 
   var waText = 'שלום,\n\nתזכורת לתור שלך:\n'+
-    '*'+pTitle+'*\n'+
-    dl+'\n'+
-    'שעה '+h+':'+mi+'\n'+
-    (locOn?'📍 '+LOC+'\n':'')+
-    (notes?'\n'+notes+'\n':'')+
+    pTitle+'\n'+
+    _dl+'\n'+
+    'שעה '+_h+':'+_mi+'\n'+
+    (_loc?'📍 '+_loc+'\n':'')+
+    (_notes?'\n'+_notes+'\n':'')+
     '\n📅 לחץ כאן להוספה ליומן שלך:\n'+gcLink+
     '\n\nמחכה לך! — ישראל';
-  document.getElementById('waBtn').href = 'https://wa.me/?text='+encodeURIComponent(waText);
+  document.getElementById('waBtn').href='https://wa.me/?text='+encodeURIComponent(waText);
+}
+
+function goBack(){
+  document.getElementById('form').style.display='block';
+  document.getElementById('res').style.display='none';
+}
+
+async function pickContact(){
+  try{
+    var c=await navigator.contacts.select(['name'],{multiple:false});
+    if(c&&c.length>0&&c[0].name&&c[0].name[0])
+      document.getElementById('patientName').value=c[0].name[0];
+  }catch(e){ alert('בחירה מאנשי קשר לא זמינה בדפדפן זה'); }
+}
+
+document.getElementById('dt').valueAsDate=new Date();
+if('contacts' in navigator && 'ContactsManager' in window)
+  document.getElementById('contactBtn').style.display='block';
+</script>
+</body>
+</html>
