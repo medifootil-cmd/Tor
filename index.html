@@ -1,1 +1,337 @@
-test
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#2c7a7b">
+<title>קביעת תור — ישראל</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f0f4f4;
+    color: #222;
+    min-height: 100vh;
+    padding: 20px 16px 40px;
+  }
+  h1 {
+    text-align: center;
+    color: #2c7a7b;
+    font-size: 1.4rem;
+    margin-bottom: 24px;
+    margin-top: 8px;
+  }
+  .card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  label {
+    display: block;
+    font-size: 0.85rem;
+    color: #555;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  input, select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid #ddd;
+    border-radius: 10px;
+    font-size: 1rem;
+    margin-bottom: 14px;
+    background: #fafafa;
+    color: #222;
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  input:focus, select:focus {
+    outline: none;
+    border-color: #2c7a7b;
+    background: white;
+  }
+  .row { display: flex; gap: 10px; }
+  .row > div { flex: 1; }
+  .btn-contact {
+    width: 100%;
+    padding: 11px;
+    background: #e8f4f4;
+    color: #2c7a7b;
+    border: 1.5px solid #2c7a7b;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-bottom: 14px;
+  }
+  .btn-main {
+    width: 100%;
+    padding: 14px;
+    background: #2c7a7b;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.05rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 4px;
+  }
+  .btn-main:active { background: #225f60; }
+  .error { color: #c0392b; font-size: 0.85rem; margin-bottom: 10px; min-height: 18px; }
+
+  /* Result */
+  #resultSection { display: none; }
+  .result-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  }
+  .result-title {
+    font-size: 0.8rem;
+    color: #888;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .result-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #2c7a7b;
+    margin-bottom: 6px;
+  }
+  .result-detail { font-size: 0.95rem; color: #444; margin-bottom: 4px; }
+  .btn-ics {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: #2c7a7b;
+    color: white;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 10px;
+  }
+  .btn-gc {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    background: #4285f4;
+    color: white;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    margin-bottom: 0;
+  }
+  .btn-back {
+    width: 100%;
+    padding: 12px;
+    background: #eee;
+    color: #444;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 14px;
+  }
+  .divider { height: 1px; background: #eee; margin: 12px 0; }
+</style>
+</head>
+<body>
+
+<h1>📅 קביעת תור</h1>
+
+<!-- FORM -->
+<div id="formSection">
+  <div class="card">
+    <label>שם המטופל</label>
+    <button class="btn-contact" id="contactBtn" style="display:none" onclick="pickContact()">📇 בחר מאנשי קשר</button>
+    <input type="text" id="patientName" placeholder="שם פרטי ושם משפחה">
+
+    <label>סוג הטיפול</label>
+    <select id="treatType">
+      <option value="">בחר טיפול...</option>
+      <option>פדיקור רפואי</option>
+      <option>טיפול בפטרת ציפורניים</option>
+      <option>טיפול בציפורן חודרנית</option>
+      <option>טיפול בפצע / כיב</option>
+      <option>טיפול בעקב סדוק</option>
+      <option>הכנת משחה / קרם</option>
+      <option>ייעוץ</option>
+    </select>
+
+    <div class="row">
+      <div>
+        <label>תאריך</label>
+        <input type="date" id="dt">
+      </div>
+      <div>
+        <label>שעה</label>
+        <input type="time" id="tm" value="09:00">
+      </div>
+    </div>
+
+    <label>משך הטיפול (דקות)</label>
+    <select id="dur">
+      <option value="30">30 דקות</option>
+      <option value="45">45 דקות</option>
+      <option value="60" selected>שעה</option>
+      <option value="90">שעה וחצי</option>
+      <option value="120">שעתיים</option>
+    </select>
+
+    <label>כתובת (אופציונלי)</label>
+    <input type="text" id="loc" placeholder="עיר / רחוב">
+
+    <label>הערות (אופציונלי)</label>
+    <input type="text" id="notes" placeholder="הערות לטיפול">
+
+    <div class="error" id="err"></div>
+
+    <button class="btn-main" onclick="generate()">✅ צור תורים</button>
+  </div>
+</div>
+
+<!-- RESULT -->
+<div id="resultSection">
+
+  <div class="result-card">
+    <div class="result-title">📋 התור שלך</div>
+    <div id="sumM"></div>
+    <div class="divider"></div>
+    <a id="icM" class="btn-ics" download>⬇️ הוסף ליומן שלי (.ics)</a>
+    <a id="gcM" class="btn-gc" target="_blank">📅 פתח ב-Google Calendar</a>
+  </div>
+
+  <div class="result-card">
+    <div class="result-title">📤 לשליחה למטופל</div>
+    <div id="sumP"></div>
+    <div class="divider"></div>
+    <a id="icP" class="btn-ics" download>⬇️ קובץ למטופל (.ics)</a>
+    <a id="gcP" class="btn-gc" target="_blank">📅 קישור Google Calendar למטופל</a>
+  </div>
+
+  <button class="btn-back" onclick="goBack()">← תור חדש</button>
+</div>
+
+<script>
+function pad(n){ return String(n).padStart(2,'0'); }
+
+function fmtICS(d){
+  return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+
+         pad(d.getHours())+pad(d.getMinutes())+'00';
+}
+
+function hdate(ds){
+  var p=ds.split('-');
+  var days=['ראשון','שני','שלישי','רביעי','חמישי','שישי','שבת'];
+  var d=new Date(+p[0],+p[1]-1,+p[2]);
+  return 'יום '+days[d.getDay()]+', '+p[2]+'/'+p[1]+'/'+p[0];
+}
+
+function buildICS(title, desc, start, end){
+  return [
+    'BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//TorApp//HE',
+    'BEGIN:VEVENT',
+    'DTSTART:'+fmtICS(start),
+    'DTEND:'+fmtICS(end),
+    'SUMMARY:'+title,
+    'DESCRIPTION:'+desc.replace(/\n/g,'\\n'),
+    'BEGIN:VALARM','TRIGGER:-PT60M','ACTION:DISPLAY',
+    'DESCRIPTION:תזכורת לתור','END:VALARM',
+    'END:VEVENT','END:VCALENDAR'
+  ].join('\r\n');
+}
+
+function mkBlob(txt){
+  var b=new Blob([txt],{type:'text/calendar;charset=utf-8'});
+  return URL.createObjectURL(b);
+}
+
+function mkGC(title, desc, start, end){
+  function gcFmt(d){
+    return d.getFullYear()+pad(d.getMonth()+1)+pad(d.getDate())+'T'+
+           pad(d.getHours())+pad(d.getMinutes())+'00';
+  }
+  return 'https://calendar.google.com/calendar/render?action=TEMPLATE'+
+    '&text='+encodeURIComponent(title)+
+    '&dates='+gcFmt(start)+'/'+gcFmt(end)+
+    '&details='+encodeURIComponent(desc);
+}
+
+function generate(){
+  var patient = document.getElementById('patientName').value.trim();
+  var tr      = document.getElementById('treatType').value;
+  var ds      = document.getElementById('dt').value;
+  var ts      = document.getElementById('tm').value;
+  var dur     = +document.getElementById('dur').value;
+  var loc     = document.getElementById('loc').value.trim();
+  var notes   = document.getElementById('notes').value.trim();
+  var locOn   = loc.length > 0;
+
+  if(!patient){ document.getElementById('err').textContent='נא להכניס שם מטופל'; return; }
+  if(!tr)     { document.getElementById('err').textContent='נא לבחור סוג טיפול'; return; }
+  if(!ds)     { document.getElementById('err').textContent='נא לבחור תאריך'; return; }
+  document.getElementById('err').textContent='';
+
+  var p=ds.split('-').map(Number), tp=ts.split(':').map(Number);
+  var s=new Date(p[0],p[1]-1,p[2],tp[0],tp[1]);
+  var e=new Date(s.getTime()+dur*60000);
+  var dl=hdate(ds);
+  var h=pad(tp[0]), mi=pad(tp[1]);
+  var base='<br>'+dl+'<br>שעה '+h+':'+mi+' · '+dur+' דק\'';
+  if(locOn) base+='<br>📍 '+loc;
+  if(notes) base+='<br>📋 '+notes;
+
+  // התור שלי
+  var mTitle = patient;
+  var mDesc  = tr + (notes?'\n'+notes:'');
+  var mICS   = buildICS(mTitle, mDesc, s, e);
+  document.getElementById('icM').href     = mkBlob(mICS);
+  document.getElementById('icM').download = patient+'.ics';
+  document.getElementById('gcM').href     = mkGC(mTitle, mDesc, s, e);
+  document.getElementById('sumM').innerHTML = '<div class="result-name">'+patient+'</div>'+
+    '<div class="result-detail">'+tr+'</div>'+base;
+
+  // למטופל
+  var pTitle = tr+' אצל ישראל';
+  var pDesc  = notes||'';
+  var pICS   = buildICS(pTitle, pDesc, s, e);
+  document.getElementById('icP').href     = mkBlob(pICS);
+  document.getElementById('icP').download = 'טיפול — ישראל.ics';
+  document.getElementById('gcP').href     = mkGC(pTitle, pDesc, s, e);
+  document.getElementById('sumP').innerHTML = '<div class="result-name">'+pTitle+'</div>'+base;
+
+  document.getElementById('formSection').style.display='none';
+  document.getElementById('resultSection').style.display='block';
+  window.scrollTo(0,0);
+}
+
+function goBack(){
+  document.getElementById('formSection').style.display='block';
+  document.getElementById('resultSection').style.display='none';
+}
+
+async function pickContact(){
+  try{
+    var c=await navigator.contacts.select(['name'],{multiple:false});
+    if(c&&c.length>0&&c[0].name&&c[0].name[0])
+      document.getElementById('patientName').value=c[0].name[0];
+  }catch(e){}
+}
+
+document.getElementById('dt').valueAsDate=new Date();
+if('contacts' in navigator&&'ContactsManager' in window)
+  document.getElementById('contactBtn').style.display='block';
+</script>
+</body>
+</html>
